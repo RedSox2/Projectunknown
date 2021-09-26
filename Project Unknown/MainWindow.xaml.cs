@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +23,14 @@ namespace Project_Unknown
     public MainWindow()
     {
       InitializeComponent();
+    }
+
+    private bool button_clicked = false;
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+      Label_Button.Visibility = button_clicked ? Visibility.Hidden : Visibility.Visible;
+      button_clicked = !button_clicked;
     }
   }
 }
