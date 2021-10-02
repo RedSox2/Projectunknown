@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,14 +24,47 @@ namespace Project_Unknown
     public MainWindow()
     {
       InitializeComponent();
+
+
+
     }
 
-    private bool button_clicked = false;
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private bool carLeft = true;
+
+
+    private async void Button_Click(object sender, RoutedEventArgs e)
     {
-      Label_Button.Visibility = button_clicked ? Visibility.Hidden : Visibility.Visible;
-      button_clicked = !button_clicked;
+      if (carLeft)
+      { 
+        for (int i = 30; i <= 670; i++)
+        {
+          Thickness carThickness = Car.Margin;
+          carThickness.Left = i;
+          Car.Margin = carThickness;
+          await Task.Delay(2);
+        }
+
+        CarButton.Content = "Make the Car Reverse";
+        carLeft = !carLeft;
+      }
+      else
+      {
+        for (int i = 670; i >= 30; i--)
+        {
+          Thickness carThickness = Car.Margin;
+          carThickness.Left = i;
+          Car.Margin = carThickness;
+          await Task.Delay(2);
+        }
+
+        CarButton.Content = "Make the Car Go";
+        carLeft = !carLeft;
+      }
+
+
     }
   }
+
+ 
 }
